@@ -10,3 +10,10 @@
 ./insert_data users 8 Ben_Afleck imBatman@gmail.com
 ./insert_data users 9 Kate_Beckinsale bloodyVamps@gmail.com
 ./insert_data users 10 Kevin_Costner yellowStones@gmail.com
+./insert_data users 11 Mark_Twain lifesAjourney@gmail.com
+./insert_data users 12 Jennifer_Aniston FRIENDS@gmail.com
+./insert_data users 13 Jennifer_Lopez jennyFromBlock@gmail.com
+./insert_data users 14 Blake_Lively dontlikeSharks@gmail.com
+./insert_data users 15 Ryan_Reynolds imDeadPool@gmail.com
+
+./insert_data 
