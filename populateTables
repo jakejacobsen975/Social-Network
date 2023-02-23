@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./insert_data users 1 Liam_Neeson lIAMNeeson@gmail.com 
+./insert_data users 1 Liam_Neeson iWillFindYou@gmail.com 
 ./insert_data users 2 John_Trevolta johnnyT@gmail.com
 ./insert_data users 3 Natalie_Portman natPort25@gmail.com
 ./insert_data users 4 Ron_Pearlman pearlywhites@gmail.com
