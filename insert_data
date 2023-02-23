@@ -6,15 +6,14 @@ c = conn.cursor()
 
 # Insert some example posts
 if sys.argv[1] == 'users':
-    conn.execute("INSERT INTO users VALUES (?,?,?)", (sys.argv[2],sys.argv[3],sys.argv[4]))
+    c.execute("INSERT INTO users VALUES (?,?,?)", (sys.argv[2],sys.argv[3],sys.argv[4]))
 elif sys.argv[1] == 'followers':
-    conn.execute("INSERT INTO followers VALUES (?,?)", (sys.argv[2],sys.argv[3]))
-elif sys.argv[1] == 'follows':
-    conn.execute("INSERT INTO follows VALUES (?,?)", (sys.argv[2],sys.argv[3]))
+    c.execute("INSERT INTO followers VALUES (?,?)", (sys.argv[2],sys.argv[3]))
+    c.execute("INSERT INTO follows VALUES (?,?)", (sys.argv[3],sys.argv[2]))
 elif sys.argv[1] == 'posts':
-    conn.execute("INSERT INTO posts VALUES (?,?,?)", (sys.argv[2],sys.argv[3],sys.argv[4]))
+    c.execute("INSERT INTO posts VALUES (?,?,?)", (sys.argv[2],sys.argv[3],sys.argv[4]))
 elif sys.argv[1] == 'comments':
-    conn.execute("INSERT INTO comments VALUES (?,?,?,?,?)", (sys.argv[2],sys.argv[3],sys.argv[4],sys.argv[5],sys.argv[6]))
+    c.execute("INSERT INTO comments VALUES (?,?,?,?,?)", (sys.argv[2],sys.argv[3],sys.argv[4],sys.argv[5],sys.argv[6]))
 else:
     print('that table in not in the schema')
     # conn.execute("INSERT INTO posts (user_id, content) VALUES (2, 'This is post #2')")

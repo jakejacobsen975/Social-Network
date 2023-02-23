@@ -1,8 +1,31 @@
 #!/usr/bin/env python3
 import sqlite3
-
+import sys
+import pyfiglet
 conn = sqlite3.connect('social_media.db')
 c = conn.cursor()
+
+if sys.argv[1] == 'interact':
+    ascii_banner = pyfiglet.figlet_format("Welcome")
+    print(ascii_banner)
+    print('''Create acount with create command followed by your information
+example create johndoe johndoe@gmail.com
+
+Or login in with the login command with id
+example login 1 
+    '''
+    )
+elif sys.argv[1] == 'create':
+    c.execute("SELECT count(1) FROM users")
+    count = c.fetchall()
+    count = count[0][0]
+    c.execute("INSERT INTO users VALUES (?,?,?)", (count+1,sys.argv[2],sys.argv[3]))
+elif sys.argv[1] == 'login':
+    person_id = sys.argv[2]
+    c.execute("SELECT username FROM users where id == "+str(person_id))
+    person = c.fetchall()
+    person = person[0][0]
+    print(person)
 
 # The post ID we want to retrieve comments for
 post_id = 1
@@ -35,8 +58,8 @@ cursor = conn.execute(recursive_query, (post_id,))
 results = cursor.fetchall()
 
 # Print the results
-for row in results:
-  print("row:",row)
+#for row in results:
+#  print("row:",row)
 
 
 #cd mnt/c/Users/jakej/OneDrive/Documents/CS/CS-4307/
