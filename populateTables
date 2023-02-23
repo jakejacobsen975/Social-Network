@@ -1,1 +1,19 @@
 #!/bin/bash
+
+./insert_data users 1 Liam_Neeson lIAMNeeson@gmail.com 
+./insert_data users 2 John_Trevolta johnnyT@gmail.com
+./insert_data users 3 Natalie_Portman natPort25@gmail.com
+./insert_data users 4 Ron_Pearlman pearlywhites@gmail.com
+./insert_data users 5 Celine_Dion andIIIII@gmail.com
+./insert_data users 6 Jack_Black schoolRocks@gmail.com
+./insert_data users 7 Katy_Perry firew0rks@gmail.com
+./insert_data users 8 Ben_Afleck imBatman@gmail.com
+./insert_data users 9 Kate_Beckinsale bloodyVamps@gmail.com
+./insert_data users 10 Kevin_Costner yellowStones@gmail.com
+./insert_data users 11 Mark_Twain lifesAjourney@gmail.com
+./insert_data users 12 Jennifer_Aniston FRIENDS@gmail.com
+./insert_data users 13 Jennifer_Lopez jennyFromBlock@gmail.com
+./insert_data users 14 Blake_Lively dontlikeSharks@gmail.com
+./insert_data users 15 Ryan_Reynolds imDeadPool@gmail.com
+
+./insert_data 
