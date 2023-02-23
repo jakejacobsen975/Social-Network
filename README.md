@@ -1,4 +1,6 @@
 # Social-Network
+if not installed yet install pyfiglet with the following command
+pip install pyfiglet
 
 To run the tests for this social network first run
 ./make_data
