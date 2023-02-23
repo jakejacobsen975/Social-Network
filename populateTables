@@ -5,8 +5,8 @@
 ./insert_data users 3 Natalie_Portman natPort25@gmail.com
 ./insert_data users 4 Ron_Pearlman pearlywhites@gmail.com
 ./insert_data users 5 Celine_Dion andIIIII@gmail.com
-./insert_data users 6 Jack_Black schoolRocks!@gmail.com
-./insert_data users 7 Katy_Perry f!rew0rks@gmail.com
+./insert_data users 6 Jack_Black schoolRocks@gmail.com
+./insert_data users 7 Katy_Perry frew0rks@gmail.com
 ./insert_data users 8 Ben_Afleck imBatman@gmail.com
 ./insert_data users 9 Kate_Beckinsale bloodyVamps@gmail.com
 ./insert_data users 10 Kevin_Costner yellowStones@gmail.com
