@@ -37,7 +37,7 @@ c.execute("""CREATE TABLE posts (
 c.execute("""CREATE TABLE comments (
   id INTEGER PRIMARY KEY,
   post_id INTEGER NOT NULL,
-  user_id INTEGER NOT NULL,
+  user_id INTEGER NOT NULL,--this is the id of the poster
   content TEXT NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   parent_id INTEGER, -- this is a id of a user

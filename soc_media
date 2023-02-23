@@ -25,41 +25,65 @@ elif sys.argv[1] == 'login':
     c.execute("SELECT username FROM users where id == "+str(person_id))
     person = c.fetchall()
     person = person[0][0]
-    print(person)
+    print(pyfiglet.figlet_format("Hello\n" + str(person)))
+    print("""You can follow, post, comment or look at your feed
+Examples:
+        follow john_done
+        post this is my post
+        feed 
+        comment this is my comment 
+    """)
+elif sys.argv[1] == 'follow':
+    pass 
+elif sys.argv[1] == 'post':
+    pass
+elif sys.argv[1] == 'comment':
+    c.execute("INSERT INTO posts (user_id, content) VALUES (2, 'This is post #2')")
+    c.execute("INSERT INTO posts (user_id, content) VALUES (1, 'This is post #3')")
 
-# The post ID we want to retrieve comments for
-post_id = 1
+    c.execute("INSERT INTO comments (post_id, user_id, content) VALUES (1, 2, 'This is a comment on post #1')")
+    c.execute("INSERT INTO comments (post_id, user_id, content, parent_id) VALUES (1, 1, 'This is a reply to the first comment', 1)")
+    c.execute("INSERT INTO comments (post_id, user_id, content, parent_id) VALUES (1, 2, 'This is a reply to the reply', 2)")
+    c.execute("INSERT INTO comments (post_id, user_id, content) VALUES (2, 1, 'This is a comment on post #2')")
+    c.execute("INSERT INTO comments (post_id, user_id, content, parent_id) VALUES (1, 2, 'This is a nested reply to the first comment', 3)")
+    c.execute("INSERT INTO comments (post_id, user_id, content) VALUES (1, 1, 'This is another comment on post #1')")
+    c.execute("INSERT INTO comments (post_id, user_id, content, parent_id) VALUES (1, 2, 'This is a reply to the second comment', 6)")
+    post_id = 1
 
-# Define the recursive query CTE
-recursive_query = """
-WITH RECURSIVE comment_tree(id, post_id, user_id, content, created_at, parent_id, depth) AS (
-  -- Base case: select top-level comments
-  SELECT id, post_id, user_id, content, created_at, parent_id, 0
-  FROM comments
-  WHERE post_id = ? AND parent_id IS NULL
-  
-  UNION ALL
-  
-  -- Recursive case: select nested comments
-  SELECT c.id, c.post_id, c.user_id, c.content, c.created_at, c.parent_id, ct.depth + 1
-  FROM comments c
-  JOIN comment_tree ct ON c.parent_id = ct.id
-)
-SELECT id, post_id, user_id, content, created_at, parent_id, depth
-FROM comment_tree
-ORDER BY created_at ASC
-"""
-
-
-# Execute the recursive query with the post_id parameter
-cursor = conn.execute(recursive_query, (post_id,))
-
-# Fetch the results
-results = cursor.fetchall()
-
-# Print the results
-#for row in results:
-#  print("row:",row)
+    # Define the recursive query CTE
+    recursive_query = """
+    WITH RECURSIVE comment_tree(id, post_id, user_id, content, created_at, parent_id, depth) AS (
+    -- Base case: select top-level comments
+    SELECT id, post_id, user_id, content, created_at, parent_id, 0
+    FROM comments
+    WHERE post_id = ? AND parent_id IS NULL
+    
+    UNION ALL
+    
+    -- Recursive case: select nested comments
+    SELECT c.id, c.post_id, c.user_id, c.content, c.created_at, c.parent_id, ct.depth + 1
+    FROM comments c
+    JOIN comment_tree ct ON c.parent_id = ct.id
+    )
+    SELECT id, post_id, user_id, content, created_at, parent_id, depth
+    FROM comment_tree
+    ORDER BY created_at ASC
+    """
 
 
-#cd mnt/c/Users/jakej/OneDrive/Documents/CS/CS-4307/
+    # Execute the recursive query with the post_id parameter
+    c.execute(recursive_query, (post_id,))
+
+    # Fetch the results
+    results = c.fetchall()
+
+    # Print the results
+    for row in results:
+        print("row:",row)
+
+
+    #cd mnt/c/Users/jakej/OneDrive/Documents/CS/CS-4307/
+else:
+    print('That is not command')
+conn.commit()
+
