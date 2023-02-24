@@ -126,3 +126,5 @@
 ./insert_data followers 16 4
 ./insert_data followers 16 2
 
+./insert_data posts
+./insert_data comments
