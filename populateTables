@@ -14,7 +14,7 @@
 ./insert_data users 12 Dobby FreedBySock@gmail.com
 ./insert_data users 13 Lord_Voldemort AvadaKedavra@gmail.com
 ./insert_data users 14 Alastor_Moody CrazyEye@gmail.com
-./insert_data users 15 Minerva_Mcgonagall 50points@gmail.com
+./insert_data users 15 Minerva_Mcgonagall Fiftypoints@gmail.com
 ./insert_data users 16 Dolores_Umbridge ChildPunisher@gmail.com
 
 ./insert_data followers 1 2 

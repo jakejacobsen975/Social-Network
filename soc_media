@@ -34,7 +34,9 @@ Examples:
         comment this is my comment 
     """)
 elif sys.argv[1] == 'follow':
-    pass 
+    c.execute("SELECT username FROM users")
+    names = c.fetchall()
+    print(names)
 elif sys.argv[1] == 'post':
     pass
 elif sys.argv[1] == 'comment':
