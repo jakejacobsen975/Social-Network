@@ -1,7 +1,19 @@
 #!/usr/bin/env python3
 import sqlite3
 import sys
+import datetime
 import pyfiglet
+
+def UserExists(user):
+    c.execute("SELECT username FROM users")
+    nameList = c.fetchall()
+    for i in range(len(nameList)):
+        inListName = nameList[i]
+        if user == inListName[0]:
+            return True
+    return False
+
+
 conn = sqlite3.connect('social_media.db')
 c = conn.cursor()
 
@@ -21,12 +33,24 @@ elif sys.argv[1] == 'create':
     count = count[0][0]
     c.execute("INSERT INTO users VALUES (?,?,?)", (count+1,sys.argv[2],sys.argv[3]))
 elif sys.argv[1] == 'login':
+    usrName = input("Please enter your username: ")
+    isUser = UserExists(usrName)
+    if isUser is False:
+        print("Could not find user. Please try new name or create an account.")
+        sys.exit()
+    c.execute("SELECT id FROM users WHERE username = (?)", [usrName])
+    id = c.fetchall()
+    id = id[0][0]
     file1 = open('text.txt','w')
-    file1.write(sys.argv[2])
-    c.execute("SELECT username FROM users where id == "+str(sys.argv[2]))
-    pep = c.fetchall()
-    pep = pep[0][0]
-    print(pyfiglet.figlet_format("Hello\n" + str(pep)))
+    file1.write(str(id))
+    file1.close()
+    # file1.write(sys.argv[2])
+    # c.execute("SELECT username FROM users where id == "+str(sys.argv[2]))
+    # c.execute("SELECT username FROM users where id == "+ str(id))
+    # pep = c.fetchall()
+    # pep = pep[0][0]
+    # print(pyfiglet.figlet_format("Hello\n" + str(pep)))
+    print(pyfiglet.figlet_format("Hello\n" + usrName))
     print("""You can follow, post, comment or look at your feed
 Examples:
         follow john_done
@@ -36,10 +60,51 @@ Examples:
     """)
 elif sys.argv[1] == 'follow':
     c.execute("SELECT username FROM users")
-    names = c.fetchall()
-    print(names)
+    Names = c.fetchall()
+    isSecond = False
+    nameList = ""
+    # Display list of Names as options to follow
+    for i in range(0, len(Names)):
+        name = Names[i]
+        if isSecond == False:
+            nameList += "{0}".format(name[0])
+            for j in range(len(name[0]), 25):
+                nameList += " "
+            isSecond = True
+        else:
+            nameList += "{}\n".format(name[0])
+            isSecond = False
+    print(nameList)
+
+    isValid = False
+    while isValid is False:
+        who = input("Please type the name of the person you want to follow: ")
+        if UserExists(who) is True:
+            isValid = True
+        else:
+            print("Please pick a valid name from the list.")
+    c.execute("SELECT id FROM users WHERE username = (?)", [who])
+    id = c.fetchall()
+    id = id[0][0]
+    
+    file = open('text.txt')
+    usrID = file.readline()
+    
+    
+    c.execute("INSERT INTO follows VALUES (?,?)", (usrID, id))
+    c.execute("INSERT INTO followers VALUES (?,?)", (id, usrID))
 elif sys.argv[1] == 'post':
-    pass
+    currentDateTime = datetime.datetime.now()
+    c.execute("SELECT COUNT(*) FROM posts")
+    count = c.fetchall()
+    count = count[0][0]
+    
+    file = open('text.txt')
+    usrID = file.readline()
+    file.close()
+
+    content = input("What would you like to post?:\n")
+    c.execute("INSERT INTO posts VALUES (?,?,?,?)", (count+1, usrID, content, currentDateTime))
 elif sys.argv[1] == 'feed':
     file1 = open('text.txt')
     id = file1.readline()
