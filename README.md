@@ -15,4 +15,4 @@ Now run
 An account has been created 
 Now run
 ./soc_media login id
-
+follow the instructions that are printed out once logged in
