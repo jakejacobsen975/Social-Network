@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import sqlite3
 import sys
-import datetime
 import pyfiglet
 
 def UserExists(user):
@@ -94,7 +93,6 @@ elif sys.argv[1] == 'follow':
     c.execute("INSERT INTO follows VALUES (?,?)", (usrID, id))
     c.execute("INSERT INTO followers VALUES (?,?)", (id, usrID))
 elif sys.argv[1] == 'post':
-    currentDateTime = datetime.datetime.now()
     c.execute("SELECT COUNT(*) FROM posts")
     count = c.fetchall()
     count = count[0][0]
@@ -104,7 +102,7 @@ elif sys.argv[1] == 'post':
     file.close()
 
     content = input("What would you like to post?:\n")
-    c.execute("INSERT INTO posts VALUES (?,?,?,?)", (count+1, usrID, content, currentDateTime))
+    c.execute("INSERT INTO posts (id, user_id, content) VALUES (?,?,?,?)", (count+1, usrID, content))
 elif sys.argv[1] == 'feed':
     file1 = open('text.txt')
     id = file1.readline()
