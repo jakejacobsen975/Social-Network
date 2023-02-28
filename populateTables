@@ -1,130 +1,130 @@
 #!/bin/bash
 
-./insert_data users 1 Harry_Potter BoyWhoLived@gmail.com 
-./insert_data users 2 Draco_Malfoy youMudBlood@gmail.com
-./insert_data users 3 Severus_Snape ObviouslySnape@gmail.com
-./insert_data users 4 Rubeus_Hagrid youreAwizard@gmail.com
-./insert_data users 5 Albus_Dumbledore PhoenixPower@gmail.com
-./insert_data users 6 Hermione_Granger schoolRocks@gmail.com
-./insert_data users 7 Ron_Weasley itsLeviosA@gmail.com
-./insert_data users 8 Sirius_Black wolfUncle@gmail.com
-./insert_data users 9 Bellatrix_Lestrange iKilledSirius@gmail.com
-./insert_data users 10 Neville_Longbottom BadWithBrooms@gmail.com
-./insert_data users 11 Remus_Lupin DrWerewolf@gmail.com
-./insert_data users 12 Dobby FreedBySock@gmail.com
-./insert_data users 13 Lord_Voldemort AvadaKedavra@gmail.com
-./insert_data users 14 Alastor_Moody CrazyEye@gmail.com
-./insert_data users 15 Minerva_Mcgonagall Fiftypoints@gmail.com
-./insert_data users 16 Dolores_Umbridge ChildPunisher@gmail.com
+python3 insert_data users 1 Harry_Potter BoyWhoLived@gmail.com 
+python3 insert_data users 2 Draco_Malfoy youMudBlood@gmail.com
+python3 insert_data users 3 Severus_Snape ObviouslySnape@gmail.com
+python3 insert_data users 4 Rubeus_Hagrid youreAwizard@gmail.com
+python3 insert_data users 5 Albus_Dumbledore PhoenixPower@gmail.com
+python3 insert_data users 6 Hermione_Granger schoolRocks@gmail.com
+python3 insert_data users 7 Ron_Weasley itsLeviosA@gmail.com
+python3 insert_data users 8 Sirius_Black wolfUncle@gmail.com
+python3 insert_data users 9 Bellatrix_Lestrange iKilledSirius@gmail.com
+python3 insert_data users 10 Neville_Longbottom BadWithBrooms@gmail.com
+python3 insert_data users 11 Remus_Lupin DrWerewolf@gmail.com
+python3 insert_data users 12 Dobby FreedBySock@gmail.com
+python3 insert_data users 13 Lord_Voldemort AvadaKedavra@gmail.com
+python3 insert_data users 14 Alastor_Moody CrazyEye@gmail.com
+python3 insert_data users 15 Minerva_Mcgonagall Fiftypoints@gmail.com
+python3 insert_data users 16 Dolores_Umbridge ChildPunisher@gmail.com
 
-./insert_data followers 1 2 
-./insert_data followers 1 12
-./insert_data followers 1 15
-./insert_data followers 1 4
-./insert_data followers 1 3
-./insert_data followers 1 7
-./insert_data followers 1 10
-./insert_data followers 1 6
-./insert_data followers 2 1
-./insert_data followers 2 3
-./insert_data followers 2 5
-./insert_data followers 2 7
-./insert_data followers 2 9
-./insert_data followers 2 11
-./insert_data followers 2 13
-./insert_data followers 2 15
-./insert_data followers 3 2
-./insert_data followers 3 4
-./insert_data followers 3 6
-./insert_data followers 3 8
-./insert_data followers 3 14
-./insert_data followers 3 12
-./insert_data followers 3 16
-./insert_data followers 4 1
-./insert_data followers 4 11
-./insert_data followers 4 15
-./insert_data followers 4 3
-./insert_data followers 4 7
-./insert_data followers 5 6
-./insert_data followers 5 15
-./insert_data followers 5 16
-./insert_data followers 5 8
-./insert_data followers 5 13
-./insert_data followers 6 4
-./insert_data followers 6 16
-./insert_data followers 6 12
-./insert_data followers 6 14
-./insert_data followers 6 1
-./insert_data followers 6 3
-./insert_data followers 7 6
-./insert_data followers 7 1
-./insert_data followers 7 15
-./insert_data followers 7 16
-./insert_data followers 7 2
-./insert_data followers 7 5
-./insert_data followers 8 13
-./insert_data followers 8 16
-./insert_data followers 8 15
-./insert_data followers 8 9
-./insert_data followers 8 6
-./insert_data followers 8 4
-./insert_data followers 9 11
-./insert_data followers 9 15
-./insert_data followers 9 16
-./insert_data followers 9 1
-./insert_data followers 9 4
-./insert_data followers 9 6
-./insert_data followers 9 10
-./insert_data followers 10 1
-./insert_data followers 10 4
-./insert_data followers 10 16
-./insert_data followers 10 14
-./insert_data followers 10 13
-./insert_data followers 10 15
-./insert_data followers 11 15
-./insert_data followers 11 1
-./insert_data followers 11 4
-./insert_data followers 11 6 
-./insert_data followers 11 16
-./insert_data followers 12 16
-./insert_data followers 12 7
-./insert_data followers 12 1
-./insert_data followers 12 6
-./insert_data followers 12 5
-./insert_data followers 12 13
-./insert_data followers 13 12
-./insert_data followers 13 8
-./insert_data followers 13 2
-./insert_data followers 13 7
-./insert_data followers 13 4
-./insert_data followers 13 6
-./insert_data followers 13 3
-./insert_data followers 13 5
-./insert_data followers 14 15
-./insert_data followers 14 8
-./insert_data followers 14 4
-./insert_data followers 14 16
-./insert_data followers 14 1
-./insert_data followers 14 2
-./insert_data followers 14 5
-./insert_data followers 14 6
-./insert_data followers 15 14
-./insert_data followers 15 6
-./insert_data followers 15 4
-./insert_data followers 15 1
-./insert_data followers 15 11
-./insert_data followers 15 7
-./insert_data followers 15 9
-./insert_data followers 16 1
-./insert_data followers 16 15
-./insert_data followers 16 3
-./insert_data followers 16 6
-./insert_data followers 16 9
-./insert_data followers 16 10
-./insert_data followers 16 11
-./insert_data followers 16 8
-./insert_data followers 16 4
-./insert_data followers 16 2
+python3 insert_data followers 1 2 
+python3 insert_data followers 1 12
+python3 insert_data followers 1 15
+python3 insert_data followers 1 4
+python3 insert_data followers 1 3
+python3 insert_data followers 1 7
+python3 insert_data followers 1 10
+python3 insert_data followers 1 6
+python3 insert_data followers 2 1
+python3 insert_data followers 2 3
+python3 insert_data followers 2 5
+python3 insert_data followers 2 7
+python3 insert_data followers 2 9
+python3 insert_data followers 2 11
+python3 insert_data followers 2 13
+python3 insert_data followers 2 15
+python3 insert_data followers 3 2
+python3 insert_data followers 3 4
+python3 insert_data followers 3 6
+python3 insert_data followers 3 8
+python3 insert_data followers 3 14
+python3 insert_data followers 3 12
+python3 insert_data followers 3 16
+python3 insert_data followers 4 1
+python3 insert_data followers 4 11
+python3 insert_data followers 4 15
+python3 insert_data followers 4 3
+python3 insert_data followers 4 7
+python3 insert_data followers 5 6
+python3 insert_data followers 5 15
+python3 insert_data followers 5 16
+python3 insert_data followers 5 8
+python3 insert_data followers 5 13
+python3 insert_data followers 6 4
+python3 insert_data followers 6 16
+python3 insert_data followers 6 12
+python3 insert_data followers 6 14
+python3 insert_data followers 6 1
+python3 insert_data followers 6 3
+python3 insert_data followers 7 6
+python3 insert_data followers 7 1
+python3 insert_data followers 7 15
+python3 insert_data followers 7 16
+python3 insert_data followers 7 2
+python3 insert_data followers 7 5
+python3 insert_data followers 8 13
+python3 insert_data followers 8 16
+python3 insert_data followers 8 15
+python3 insert_data followers 8 9
+python3 insert_data followers 8 6
+python3 insert_data followers 8 4
+python3 insert_data followers 9 11
+python3 insert_data followers 9 15
+python3 insert_data followers 9 16
+python3 insert_data followers 9 1
+python3 insert_data followers 9 4
+python3 insert_data followers 9 6
+python3 insert_data followers 9 10
+python3 insert_data followers 10 1
+python3 insert_data followers 10 4
+python3 insert_data followers 10 16
+python3 insert_data followers 10 14
+python3 insert_data followers 10 13
+python3 insert_data followers 10 15
+python3 insert_data followers 11 15
+python3 insert_data followers 11 1
+python3 insert_data followers 11 4
+python3 insert_data followers 11 6 
+python3 insert_data followers 11 16
+python3 insert_data followers 12 16
+python3 insert_data followers 12 7
+python3 insert_data followers 12 1
+python3 insert_data followers 12 6
+python3 insert_data followers 12 5
+python3 insert_data followers 12 13
+python3 insert_data followers 13 12
+python3 insert_data followers 13 8
+python3 insert_data followers 13 2
+python3 insert_data followers 13 7
+python3 insert_data followers 13 4
+python3 insert_data followers 13 6
+python3 insert_data followers 13 3
+python3 insert_data followers 13 5
+python3 insert_data followers 14 15
+python3 insert_data followers 14 8
+python3 insert_data followers 14 4
+python3 insert_data followers 14 16
+python3 insert_data followers 14 1
+python3 insert_data followers 14 2
+python3 insert_data followers 14 5
+python3 insert_data followers 14 6
+python3 insert_data followers 15 14
+python3 insert_data followers 15 6
+python3 insert_data followers 15 4
+python3 insert_data followers 15 1
+python3 insert_data followers 15 11
+python3 insert_data followers 15 7
+python3 insert_data followers 15 9
+python3 insert_data followers 16 1
+python3 insert_data followers 16 15
+python3 insert_data followers 16 3
+python3 insert_data followers 16 6
+python3 insert_data followers 16 9
+python3 insert_data followers 16 10
+python3 insert_data followers 16 11
+python3 insert_data followers 16 8
+python3 insert_data followers 16 4
+python3 insert_data followers 16 2
 
-./insert_data posts
-./insert_data comments
+python3 insert_data posts
+python3 insert_data comments
