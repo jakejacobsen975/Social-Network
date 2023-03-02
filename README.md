@@ -20,4 +20,3 @@ To follow someone, first run
 A list of names will appear and you may choose one person to follow by typing in 
 a name as displayed in the list. You will be added to their followers list as 
 they are added to your follows list.
-

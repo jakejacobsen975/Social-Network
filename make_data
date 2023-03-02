@@ -12,12 +12,7 @@ c.execute("""CREATE TABLE users (
   )
   """
 )
-c.execute("""CREATE TABLE followers (
-  user_id INTEGER,
-  follower_id INTEGER
-  )
-  """
-)
+
 c.execute("""CREATE TABLE follows (
   user_id INTEGER,
   following_id INTEGER
@@ -46,6 +41,16 @@ c.execute("""CREATE TABLE comments (
   )
 """
 )
+                
+c.execute(""" CREATE TABLE houses (
+  user_id INTEGER NOT NULL,
+  housename TEXT NOT NULL,
+  battle_points INTEGER DEFAULT 0,
+  fight_count INTEGER DEFAULT 0
+  )
+"""
+)
+
 conn.commit()
 
 
