@@ -175,7 +175,7 @@ elif sys.argv[1] == 'feed':
             )
             SELECT id, content, depth
             FROM comment_tree
-            ORDER BY parent_id asc
+            ORDER BY id asc
             """
 
 
