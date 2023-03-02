@@ -25,9 +25,9 @@ def followingExists(followName):
     """
     c.execute(followingQuery, [usrID])
     followingNames = c.fetchall()
-    
     for i in range(len(followingNames)):
-        if followName == followingNames[0][1]:
+        fname = followingNames[i]
+        if followName == fname[1]:
             print("Following already exists")
             return True
     return False
@@ -87,41 +87,55 @@ elif sys.argv[1] == 'follow':
     c.execute(userQuery, [usrID])
     thisName = c.fetchall()
     currentUser = thisName[0][0]
-    print(f"Current user: {currentUser}")
+    print(f"Current user: {currentUser}\n")
     
     notFollowingQuery = """
-    SELECT id, username, user_id, following_id
+    WITH RECURSIVE following(user_id, level) AS (
+    -- Initial level: users followed by the given user
+    SELECT user_id, 1
+    FROM follows
+    WHERE following_id = ?
+    
+    UNION ALL
+    
+    -- Subsequent levels: users that are followed by followed users
+    SELECT f.user_id, level + 1
+    FROM follows f
+    JOIN following ON following.user_id = f.following_id
+    WHERE level < 1
+    )
+    SELECT username
     FROM users
-    JOIN follows
-    ON id = following_id
-    ORDER BY id ASC
+    WHERE id NOT IN (SELECT user_id FROM following) and id <> ?
+    ORDER BY username;
     """
-    c.execute(notFollowingQuery)#,(usrID, currentUser))
+    c.execute(notFollowingQuery, (usrID, usrID))
     Names = c.fetchall()
-    print(Names)
+    
     isSecond = False
     nameList = ""
     # Display list of Names as options to follow
     for i in range(0, len(Names)):
         name = Names[i]
         if isSecond == False:
-            nameList += "{0}".format(name[1])
-            for j in range(len(name[1]), 25):
+            nameList += "{0}".format(name[0])
+            for j in range(len(name[0]), 25):
                 nameList += " "
             isSecond = True
         else:
-            nameList += "{}\n".format(name[1])
+            nameList += "{}\n".format(name[0])
             isSecond = False
     print(nameList)
 
     isValid = False
+    who = ""
     while isValid is False:
-        who = input("Please type the name of the person you want to follow: ")
+        who = input("\nPlease type the name of the person you want to follow: ")
         if UserExists(who) is True and followingExists(who) is False:
             isValid = True
         else:
             print("Please pick a valid name from the list.")
-    
+    print(f"Now following: {who}")
     c.execute("SELECT id FROM users WHERE username = (?)", [who])
     id = c.fetchall()
     id = id[0][0]
@@ -209,6 +223,7 @@ elif sys.argv[1] == 'comment':
 elif sys.argv[1] == 'test':
     file1 = open('text.txt')
     id = file1.readline()
+    file1.close()
     recursive_query = """
    WITH RECURSIVE following(user_id, level) AS (
     -- Initial level: users followed by the given user
@@ -223,12 +238,12 @@ elif sys.argv[1] == 'test':
     FROM follows f
     JOIN following ON following.user_id = f.following_id
     WHERE level < 1
-)
-SELECT username
-FROM users
-WHERE id NOT IN (SELECT user_id FROM following) and id <> ?
-ORDER BY username;
-            """
+    )
+    SELECT username
+    FROM users
+    WHERE id NOT IN (SELECT user_id FROM following) and id <> ?
+    ORDER BY username;
+    """
 
 
             # Execute the recursive query with the post_id parameter
