@@ -90,29 +90,27 @@ elif sys.argv[1] == 'follow':
     print(f"Current user: {currentUser}")
     
     notFollowingQuery = """
-    SELECT username
+    SELECT id, username, user_id, following_id
     FROM users
     JOIN follows
-    ON id = user_id
-    WHERE following_id <> (?) AND username <> (?)
-    GROUP BY username
-    ORDER BY user_id ASC
+    ON id = following_id
+    ORDER BY id ASC
     """
-    c.execute(notFollowingQuery, (usrID, currentUser))
+    c.execute(notFollowingQuery)#,(usrID, currentUser))
     Names = c.fetchall()
-    
+    print(Names)
     isSecond = False
     nameList = ""
     # Display list of Names as options to follow
     for i in range(0, len(Names)):
         name = Names[i]
         if isSecond == False:
-            nameList += "{0}".format(name[0])
-            for j in range(len(name[0]), 25):
+            nameList += "{0}".format(name[1])
+            for j in range(len(name[1]), 25):
                 nameList += " "
             isSecond = True
         else:
-            nameList += "{}\n".format(name[0])
+            nameList += "{}\n".format(name[1])
             isSecond = False
     print(nameList)
 
