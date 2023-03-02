@@ -12,6 +12,26 @@ def UserExists(user):
             return True
     return False
 
+def followingExists(followName):
+    file = open('text.txt')
+    usrID = file.readline()
+    file.close()
+    followingQuery = """
+    SELECT id, username, user_id, following_id
+    FROM users
+    JOIN follows
+    ON id = user_id
+    WHERE following_id = (?)
+    """
+    c.execute(followingQuery, [usrID])
+    followingNames = c.fetchall()
+    
+    for i in range(len(followingNames)):
+        if followName == followingNames[0][1]:
+            print("Following already exists")
+            return True
+    return False
+        
 
 conn = sqlite3.connect('social_media.db')
 c = conn.cursor()
@@ -58,8 +78,29 @@ Examples:
         comment this is my comment id id(first id is the post and second is the comment)
     """)
 elif sys.argv[1] == 'follow':
-    c.execute("SELECT username FROM users")
+    file = open('text.txt')
+    usrID = file.readline()
+    userQuery = """
+    SELECT username FROM users
+    WHERE id = (?)
+    """
+    c.execute(userQuery, [usrID])
+    thisName = c.fetchall()
+    currentUser = thisName[0][0]
+    print(f"Current user: {currentUser}")
+    
+    notFollowingQuery = """
+    SELECT username
+    FROM users
+    JOIN follows
+    ON id = user_id
+    WHERE following_id <> (?) AND username <> (?)
+    GROUP BY username
+    ORDER BY user_id ASC
+    """
+    c.execute(notFollowingQuery, (usrID, currentUser))
     Names = c.fetchall()
+    
     isSecond = False
     nameList = ""
     # Display list of Names as options to follow
@@ -78,10 +119,11 @@ elif sys.argv[1] == 'follow':
     isValid = False
     while isValid is False:
         who = input("Please type the name of the person you want to follow: ")
-        if UserExists(who) is True:
+        if UserExists(who) is True and followingExists(who) is False:
             isValid = True
         else:
             print("Please pick a valid name from the list.")
+    
     c.execute("SELECT id FROM users WHERE username = (?)", [who])
     id = c.fetchall()
     id = id[0][0]
@@ -90,8 +132,7 @@ elif sys.argv[1] == 'follow':
     usrID = file.readline()
     
     
-    c.execute("INSERT INTO follows VALUES (?,?)", (usrID, id))
-    c.execute("INSERT INTO followers VALUES (?,?)", (id, usrID))
+    c.execute("INSERT INTO follows (user_id, following_id) VALUES (?,?)", (id, usrID))
 elif sys.argv[1] == 'post':
     c.execute("SELECT COUNT(*) FROM posts")
     count = c.fetchall()

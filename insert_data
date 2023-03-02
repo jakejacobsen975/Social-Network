@@ -7,8 +7,7 @@ c = conn.cursor()
 # Insert some example posts
 if sys.argv[1] == 'users':
     c.execute("INSERT INTO users VALUES (?,?,?)", (sys.argv[2],sys.argv[3],sys.argv[4]))
-elif sys.argv[1] == 'followers':
-    c.execute("INSERT INTO followers VALUES (?,?)", (sys.argv[2],sys.argv[3]))
+elif sys.argv[1] == 'follows':
     c.execute("INSERT INTO follows VALUES (?,?)", (sys.argv[3],sys.argv[2]))
 elif sys.argv[1] == 'posts':
     #c.execute("INSERT INTO posts VALUES (?,?,?)", (sys.argv[2],sys.argv[3],sys.argv[4]))
@@ -24,6 +23,8 @@ elif sys.argv[1] == 'comments':
     c.execute("INSERT INTO comments (post_id, user_id, content, parent_id) VALUES (1, 2, 'This is a nested reply to the first comment', 3)")
     c.execute("INSERT INTO comments (post_id, user_id, content) VALUES (1, 1, 'This is another comment on post #1')")
     c.execute("INSERT INTO comments (post_id, user_id, content, parent_id) VALUES (1, 2, 'This is a reply to the second comment', 6)")
+elif sys.argv[1] == 'house':
+    c.execute("INSERT INTO houses (user_id, housename) VALUES (?,?)", (sys.argv[2],sys.argv[3]))
 else:
     print('that table in not in the schema')
     # c.execute("INSERT INTO posts (user_id, content) VALUES (1, 'This is post #1')")
