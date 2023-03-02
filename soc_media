@@ -42,8 +42,8 @@ if sys.argv[1] == 'interact':
     print('''Create acount with create command followed by your information
 example create johndoe johndoe@gmail.com
 
-Or login in with the login command with id
-example login 1 
+Or login in with the login command with username
+example login john_doe
     '''
     )
 elif sys.argv[1] == 'create':
@@ -145,8 +145,9 @@ elif sys.argv[1] == 'post':
 elif sys.argv[1] == 'feed':
     file1 = open('text.txt')
     id = file1.readline()
-    c.execute("SELECT following_id FROM follows where user_id =="+str(id))
+    c.execute("SELECT user_id FROM follows where following_id =="+str(id))
     count = c.fetchall()
+    print(count)
     follows = []
     for follow in count:
         follows.append(follow[0])
@@ -161,7 +162,7 @@ elif sys.argv[1] == 'feed':
             -- Base case: select top-level comments
             SELECT id, post_id, user_id, content, created_at, parent_id, 0
             FROM comments
-            WHERE post_id = ? AND parent_id IS NULL
+            WHERE post_id = ? AND parent_id = 0
             
             UNION ALL
             
@@ -172,7 +173,7 @@ elif sys.argv[1] == 'feed':
             )
             SELECT id, content, depth
             FROM comment_tree
-            ORDER BY created_at ASC
+            ORDER BY parent_id asc
             """
 
 
@@ -187,7 +188,7 @@ elif sys.argv[1] == 'feed':
                 printer = '   '
                 printer += ' ' * row[2]*3
                 print(printer+str(row[0])+" "+row[1])
-               
+            
 elif sys.argv[1] == 'comment':
     
     file1 = open('text.txt')
@@ -205,7 +206,37 @@ elif sys.argv[1] == 'comment':
         c.execute("INSERT INTO comments (id, post_id, user_id, content, parent_id) VALUES (?,?,?,?,?)", (comment_id,post_id,user_id,content,parent_id))
     except:
         c.execute("INSERT INTO comments (id, post_id, user_id, content) VALUES (?,?,?,?)", (comment_id,post_id,user_id,content))
+elif sys.argv[1] == 'test':
+    file1 = open('text.txt')
+    id = file1.readline()
+    recursive_query = """
+   WITH RECURSIVE following(user_id, level) AS (
+    -- Initial level: users followed by the given user
+    SELECT user_id, 1
+    FROM follows
+    WHERE following_id = ?
     
+    UNION ALL
+    
+    -- Subsequent levels: users that are followed by followed users
+    SELECT f.user_id, level + 1
+    FROM follows f
+    JOIN following ON following.user_id = f.following_id
+    WHERE level < 1
+)
+SELECT username
+FROM users
+WHERE id NOT IN (SELECT user_id FROM following) and id <> ?
+ORDER BY username;
+            """
+
+
+            # Execute the recursive query with the post_id parameter
+    c.execute(recursive_query, (id,id,))
+    
+    count = c.fetchall()
+   
+    print(count)
 else:
     print('That is not command')
 conn.commit()
