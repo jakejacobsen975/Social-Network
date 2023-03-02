@@ -147,8 +147,9 @@ elif sys.argv[1] == 'post':
 elif sys.argv[1] == 'feed':
     file1 = open('text.txt')
     id = file1.readline()
-    c.execute("SELECT following_id FROM follows where user_id =="+str(id))
+    c.execute("SELECT user_id FROM follows where following_id =="+str(id))
     count = c.fetchall()
+    print(count)
     follows = []
     for follow in count:
         follows.append(follow[0])
@@ -211,29 +212,29 @@ elif sys.argv[1] == 'test':
     file1 = open('text.txt')
     id = file1.readline()
     recursive_query = """
-   WITH RECURSIVE following(following_id, level) AS (
+   WITH RECURSIVE following(user_id, level) AS (
     -- Initial level: users followed by the given user
-    SELECT following_id, 1
+    SELECT user_id, 1
     FROM follows
-    WHERE user_id = ?
+    WHERE following_id = ?
     
     UNION ALL
     
     -- Subsequent levels: users that are followed by followed users
-    SELECT f.following_id, level + 1
+    SELECT f.user_id, level + 1
     FROM follows f
-    JOIN following ON following.following_id = f.user_id
+    JOIN following ON following.user_id = f.following_id
     WHERE level < 1
 )
-SELECT username,id
+SELECT username
 FROM users
-WHERE id NOT IN (SELECT following_id FROM following)
+WHERE id NOT IN (SELECT user_id FROM following) and id <> ?
 ORDER BY username;
             """
 
 
             # Execute the recursive query with the post_id parameter
-    c.execute(recursive_query, (id,))
+    c.execute(recursive_query, (id,id,))
     
     count = c.fetchall()
    
