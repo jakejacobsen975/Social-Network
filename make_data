@@ -40,7 +40,7 @@ c.execute("""CREATE TABLE comments (
   user_id INTEGER NOT NULL,--this is the id of the poster
   content TEXT NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  parent_id INTEGER, -- this is a id of a user
+  parent_id INTEGER DEFAULT 0, -- this is a id of a user
   FOREIGN KEY (post_id) REFERENCES posts(id),
   FOREIGN KEY (parent_id) REFERENCES comments(id)
   )
