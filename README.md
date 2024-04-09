@@ -13,7 +13,7 @@
 ```./soc_media create```# An account has been created
 
 ### Now run:
-```./soc_media login```  username # This will make sure you are logged in as the current user
+```./soc_media login username```  # This will make sure you are logged in as the current user
 
 ### To follow someone, first run:
 ```./soc_media follow ```# A list of names will appear and you will be prompted to select one person to follow by typing in a name as displayed in the list. You will be added to their followers list as they are added to your follows list.
