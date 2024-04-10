@@ -25,7 +25,7 @@ pip install pyfiglet
 ```
 ./make_data
 ```
-# This creates the database
+### This creates the database
 if this fails with an error like ``` /usr/bin/env: ‘python3\r’: No such file or directory```
 try using 
 ```
