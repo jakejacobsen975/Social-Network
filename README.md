@@ -60,4 +60,4 @@ if any more following steps fail run command with ```dos2unix``` infront
 ```
 ./soc_media follow
 ```
-# A list of names will appear and you will be prompted to select one person to follow by typing in a name as displayed in the list. You will be added to their followers list as they are added to your follows list.
+### A list of names will appear and you will be prompted to select one person to follow by typing in a name as displayed in the list. You will be added to their followers list as they are added to your follows list.
