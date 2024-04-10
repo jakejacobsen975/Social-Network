@@ -1,8 +1,32 @@
+![Screenshot 2024-04-09 200054](https://github.com/jakejacobsen975/Social-Network/assets/122470500/83db5a0c-2167-4289-9e64-ea3f45480f5a)
+# Genral inforamtion
+This Harry Potter-Inspired Social Network is a platform developed as part of a Database Systems course. Conceived by myself and Ryan Rampton, this unique social network draws inspiration from the enchanting world of Harry Potter. It is based on a command line interface.
+
+The platform offers a myriad of features, including user authentication allowing individuals to sign in.
+
+Another features is the ability to join a Hogwarts house, echoing the cherished tradition in J.K. Rowling's universe. Users can align themselves with Gryffindor, Slytherin, Ravenclaw, or Hufflepuff, forging bonds with fellow housemates.
+
+Moreover, our social network facilitates seamless interaction between users, enabling them to follow each other. Users can engage in lively discussions, express their thoughts, and share their magical experiences through comments, with the option for nested threads to delve deeper into conversations.
+
+Through meticulous database design and implementation, we ensured robust data management, guaranteeing the smooth functioning of the platform. From user profiles to house affiliations and interactive features, our database system underpins the entire social network, providing a reliable foundation for its enchanting experience.
+
+# Intallation Guide 
+Download or clone the repository 
+```
+git clone https://github.com/jakejacobsen975/Social-Network.git
+```
+
 ### If not installed yet, install pyfiglet with the following command:
 ```pip install pyfiglet```
 
 ### To run the tests for this social network, first run:
 ```./make_data``` # This creates the database
+if this fails with an error like ``` /usr/bin/env: ‘python3\r’: No such file or directory```
+try using 
+```
+dos2unix make_data
+```
+if any more following steps fail run command with ```dos2unix``` infront
 ### Then run:
 ```./populateTables``` # This runs a script to fill the tables of the database with information
 
